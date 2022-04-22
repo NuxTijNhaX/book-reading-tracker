@@ -41,6 +41,7 @@ const booksGrid = document.getElementById("booksGrid");
 const submitBook = document.getElementById("submitBook");
 
 const createBookCard = (newBook) => {
+    /* Mount */
     const booksGrid = document.getElementById("booksGrid");
     const card = document.createElement("div");
     const title = document.createElement("p");
@@ -63,8 +64,8 @@ const createBookCard = (newBook) => {
     card.appendChild(btnGroup);
     booksGrid.appendChild(card);
 
-    title.textContent = newBook.title;
-    author.textContent = newBook.author;
+    title.textContent = `"${newBook.title}"`;
+    author.textContent = `- ${newBook.author} -`;
     pages.textContent = `${newBook.pages} pages`;
     removeBtn.textContent = "Remove";
     if(newBook.status) {
@@ -74,6 +75,15 @@ const createBookCard = (newBook) => {
         readedStatus.textContent = "Not Readed";
         readedStatus.classList.add("btn-light-red");
     }
+
+    /* Event */
+    removeBtn.onclick = removeBook;
+    readedStatus.onclick = changeReadingStatus;
+
+    /* Style */
+    title.style.fontWeight = "bold";
+    author.style.fontStyle = "italic";
+    pages.style.fontSize = "14px";
 }
 
 const openAddingBookForm = () => {
@@ -97,13 +107,17 @@ const createBookFromForm = () => {
 
 const addBook = (e) => {
     e.preventDefault();
+    
     libary.add(createBookFromForm());
     updateBooksGrid();
     closeAddingBookForm();
 }
 
-const removeBook = () => {
-    
+const removeBook = (e) => {
+    const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll('"', '');
+
+    libary.remove(title);
+    updateBooksGrid();
 }
 
 const resetBooksGrid = () => {
@@ -115,6 +129,14 @@ const updateBooksGrid = () => {
     for (let book of libary.books) {
       createBookCard(book);
     }
+}
+
+const changeReadingStatus = (e) => {
+    const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll('"', '');
+
+    const currentBook = libary.get(title);
+    currentBook.status = !currentBook.status;
+    updateBooksGrid();
 }
 
 addBookBtn.onclick = openAddingBookForm;
