@@ -26,6 +26,7 @@
 
 html {
     position: relative;
+    min-height: 100%;
 }
 
 body {
@@ -34,7 +35,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
     font-weight: 500;
-    height: 100vh;
+    margin-bottom: 110px;
 }
 
 input, button {
@@ -73,6 +74,7 @@ input, button {
     align-items: center;
     flex-direction: column;
 }
+
 /* Header */
 header {
     padding: var(--spacing-lg);
@@ -86,7 +88,7 @@ header {
 
 /* Main */
 main {
-    margin-top: var(--spacing-lg);
+    margin: var(--spacing-lg);
     text-align: center;
 }
 
@@ -97,12 +99,38 @@ main {
     margin-top: var(--spacing-xl);
 }
 
+.book-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 20px;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    line-height: 1.2;
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm)
+}
+
+.btn-group > button {
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 /* Footer */
 footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     padding: var(--spacing-md);
+    gap: var(--spacing-sm);
 }
 
 .fa-github {
@@ -117,25 +145,47 @@ footer {
 
 /* Form */
 .addBookForm {
-    display: flex;
-    justify-content: center;
-    /* transform: translate(-50%, -50%) scale(0);
-    transition: 0.2s ease-in-out; */
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    transform: translate(-50%, -50%);
     display: none;
+}
+
+.addBookForm.active {
+    display: block;
 }
 
 form {
     padding: var(--spacing-lg);
     border-radius: var(--border-radius);
     text-align: center;
+    width: 100%;
     gap: var(--spacing-lg);
-    width: 30%;
     box-shadow: var(--shadow);
 }
 
-form > input, button {
+form > input, form > button {
     padding: 10px;
     border-radius: var(--border-radius);
     font-size: 16px;
     font-weight: bold;
+    width: 100%;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay.active {
+    display: block;
 }
