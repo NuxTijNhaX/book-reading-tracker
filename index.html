@@ -7,9 +7,39 @@
     <title>Book Reading Tracker - By DevNhaX</title>
 
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/4c536a6bd5.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <header class="container">
+        <div class="logo-text">
+            <p>Book Reading Tracker</p>
+        </div>
+    </header>
+
+    <main>
+        <button class="btn btn-add" id="addBookBtn">+ Add book</button>
+        <div class="books-grid" id="booksGrid"></div>
+    </main>
     
+    <footer class="container">
+        <p>Developed by DevNhaX</p>
+        <a href="https://github.com/NuxTijNhaX/book-reading-tracker" target="_blank"><i class="fab fa-github"></i></a>
+    </footer>
+
+    <div class="addBookForm">
+        <form class="container" action="">
+            <h3>Add new book</h3>
+            <input type="text" placeholder="Title">
+            <input type="text" placeholder="Author">
+            <input type="text" placeholder="Pages">
+            <div class="is-read">
+                <label for="is-read">Have you read it?</label>
+                <input type="checkbox" id="isRead" name="is-read"/>
+            </div>
+            <button class="btn btn-light-green" type="submit">Submit</button>
+        </form>
+    </div>
+
     <script src="./main.js"></script>
 </body>
 </html>
